@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, String
+from sqlalchemy import Boolean, String, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -24,7 +24,17 @@ class Client(Base):
     name: Mapped[str] = mapped_column(String(100))
     phone: Mapped[str] = mapped_column(String(20))
 
+#Model dos Veículos
+class Vehicle(Base):
+    __tablename__ = "vehicles"
 
+    id: Mapped[int] = mapped_column(primary_key=True)
+    client_id: Mapped[int] = mapped_column(ForeignKey("clients.id")) #Chave estrangeira que vai ligar o veículo com seu dono
+    plate: Mapped[str] = mapped_column(String(10))
+    brand: Mapped[str] = mapped_column(String(50))
+    model: Mapped[str] = mapped_column(String(50))
+    year: Mapped[int] = mapped_column()
+    mileage: Mapped[int] = mapped_column()
 
 #Mapped -> Tipagem e definir o tipo de dado
 #mapped_column -> Detalhes da coluna no banco
