@@ -12,7 +12,7 @@ def test_login_with_correct_password():
 
     authenticated_employee = login_employee(
         employee,
-        "123456",
+        "123456", #Senha utilizada para testar o login
     )
 
     assert authenticated_employee == employee
@@ -28,7 +28,7 @@ def test_login_with_wrong_password():
 
     authenticated_employee = login_employee(
         employee,
-        "senha-errada",
+        "senha-errada", #Senha utilizada para testar o login
     )
 
     assert authenticated_employee is None
