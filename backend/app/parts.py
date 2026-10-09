@@ -39,3 +39,11 @@ def search_parts(
 #Disponibilidade da peça
 def is_part_available(part: Part) -> bool:
     return part.quantity_available > 0
+
+
+
+def update_part_stock(part: Part, quantity: int) -> None:
+    if quantity < 0:
+        raise ValueError("A quantidade não pode ser negativa")
+
+    part.quantity_available = quantity
