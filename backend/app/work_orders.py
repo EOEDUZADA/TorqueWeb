@@ -31,6 +31,27 @@ def create_work_order(
     return work_order
 
 
+def list_work_orders(
+    session: Session,
+    page: int = 1,
+    page_size: int = 10,
+) -> list[WorkOrder]:
+    if page < 1:
+        raise ValueError("A página deve ser maior ou igual a 1")
+
+    if page_size < 1:
+        raise ValueError("O tamanho da página deve ser maior ou igual a 1")
+
+    statement = (
+        select(WorkOrder)
+        .order_by(WorkOrder.id.desc())
+        .offset((page - 1) * page_size)
+        .limit(page_size)
+    )
+
+    return list(session.scalars(statement).all())
+
+
 def add_part_to_work_order(
     session: Session,
     work_order: WorkOrder,
