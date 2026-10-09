@@ -4,6 +4,7 @@ import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import Clients from "./components/pages/Clients";
 import Parts from "./components/pages/Parts";
+import AppLayout from "./components/AppLayout";
 
 function WorkOrderDetails() {
   const { id } = useParams();
@@ -17,19 +18,18 @@ function NotFound() {
 
 function App() {
   return (
-
-  <div className=" p-6">
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/clientes" element={<Clients />} />
-        <Route path="/pecas" element={<Parts />} />
-        <Route path="/ordens/:id" element={<WorkOrderDetails />} />
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/clientes" element={<Clients />} />
+          <Route path="/pecas" element={<Parts />} />
+          <Route path="/ordens/:id" element={<WorkOrderDetails />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
-  </div>
   );
 }
 
