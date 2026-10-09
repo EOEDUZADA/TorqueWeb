@@ -38,6 +38,7 @@ def search_vehicles(
     return list(session.scalars(statement).all())
 
 
+
 def list_client_vehicles(
     session: Session,
     client_id: int,
