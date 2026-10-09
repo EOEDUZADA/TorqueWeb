@@ -23,7 +23,6 @@
     "noFallthroughCasesInSwitch": true,
 
     /* alias config */
-    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
