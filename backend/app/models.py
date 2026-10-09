@@ -1,6 +1,8 @@
 from sqlalchemy import Boolean, String, ForeignKey, Numeric, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from decimal import Decimal
+from datetime import datetime
+from sqlalchemy import DateTime
 
 class Base(DeclarativeBase):
     pass
@@ -70,6 +72,21 @@ class WorkOrder(Base):
     )
     created_by: Mapped[int] = mapped_column(
         ForeignKey("employees.id")
+    )
+
+    edited_by: Mapped[int | None] = mapped_column(
+    ForeignKey("employees.id"),
+    nullable=True,
+    )
+
+    finished_by: Mapped[int | None] = mapped_column(
+        ForeignKey("employees.id"),
+        nullable=True,
+    )
+    
+    finished_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True),
+        nullable=True,
     )
 
 
